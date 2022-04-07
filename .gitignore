@@ -1,0 +1,15 @@
+.idea
+/application/controller/www/Help.php
+/application/vendor
+/application/log/*.log
+/application/log/*.php
+/tests/bulid
+/application/lite/*
+/deploy
+.DS_Store
+README.md
+composer.lock
+.env_local
+/public/.htaccess
+Test.php
+/public/nginx.htaccess
