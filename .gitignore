@@ -11,5 +11,4 @@ README.md
 composer.lock
 .env_local
 /public/.htaccess
-Test.php
 /public/nginx.htaccess
