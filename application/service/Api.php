@@ -48,7 +48,7 @@ class Api
     public static function getAccountList($data)
     {
         $rs = ApiModel::field(['distinct account_id,raw'])->where('project_id', $data['project_id'])
-            ->where('account_id', '>', 0)->column();
+            ->where('account_id', '>', 0)->column('account_id');
         $rs2 = AccountModel::field(['id', 'username', 'realname'])->where('id', 'in', $rs)->get();
         return $rs2;
     }
