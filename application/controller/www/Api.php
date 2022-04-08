@@ -7,7 +7,7 @@ use king\lib\Response;
 use app\validate\Page as PageValidate;
 use app\validate\Api as ApiValidate;
 use app\service\Api as ApiService;
-use app\cache\Login as LoginCache;
+use app\helper\Login as LoginHelper;
 use app\helper\Element as ElementHelper;
 
 class Api
@@ -28,7 +28,7 @@ class Api
     public function add()
     {
         $data = P();
-        $data['account_id'] = $this->account_id;
+        $data['account_id'] = LoginHelper::getAccountId();
         ApiValidate::check($data, 'save');
         $rs = ApiService::save($data);
         Response::sendResponseJson(200, $rs);
