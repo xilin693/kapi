@@ -8,6 +8,6 @@ return [
         'port' => Env::get('cache.port'),
         'password' => Env::get('cache.password'),
         'prefix' => Env::get('cache.prefix'),
-        'db' => 4
+        'db' => Env::get('cache.db')
     ]
 ];
