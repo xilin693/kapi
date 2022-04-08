@@ -181,7 +181,7 @@ class General
     public function file()
     {
         $upload = Upload::getClass($_FILES);
-        $name = $upload->save();
+        $name = $upload->saveFile();
         if (!$name) {
             Response::sendResponseJson(400, '上传失败,' . $upload->getError());
         } else {
