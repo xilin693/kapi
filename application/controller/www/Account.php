@@ -6,6 +6,7 @@ use king\lib\Response;
 use app\validate\Account as AccountValidate;
 use app\validate\Page as PageValidate;
 use app\service\Account as AccountService;
+use app\helper\Login as LoginHelper;
 
 class Account
 {
@@ -46,7 +47,7 @@ class Account
     public function alterPassword()
     {
         $data = steam();
-        $data['id'] = $this->account_id;
+        $data['id'] = LoginHelper::getAccountId();
         AccountValidate::check($data, 'password');
         $rs = AccountService::updatePassword($data);
         Response::sendResponseJson(200, $rs);

@@ -6,11 +6,18 @@ use king\lib\Response;
 use app\validate\Page as PageValidate;
 use app\validate\Member as MemberValidate;
 use app\service\Member as MemberService;
-use app\cache\Login as LoginCache;
+use app\helper\Login as LoginHelper;
 use app\controller\common\Template;
 
 class Member
 {
+    private $account_id;
+
+    public function __construct()
+    {
+        $this->account_id = LoginHelper::getAccountId();
+    }
+
     public function get($project_id = 0)
     {
         $data = G();

@@ -37,7 +37,7 @@ class Api
     public function copy()
     {
         $data = P();
-        $data['account_id'] = $this->account_id;
+        $data['account_id'] = LoginHelper::getAccountId();
         ApiValidate::check($data, 'save');
         $rs = ApiService::copy($data);
         Response::sendResponseJson(200, $rs);
