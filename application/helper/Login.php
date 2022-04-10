@@ -27,7 +27,7 @@ class Login
 
     public static function crypt($password)
     {
-        return md5(C('encrypt_key') . $password);
+        return md5(C('permission.password_salt') . $password);
     }
 
     public static function makeToken($id)

@@ -20,7 +20,7 @@ class Account
                 return $query->field(['id', 'username', 'realname'])->where('audit', 1)
                     ->where('id', 'not in', $ids)->where('id', '>', 1)->get();
             } elseif ($data['type'] == 'audit') {
-                return $query->field(['id', 'username', 'realname', 'audit'])
+                return $query->field(['id', 'username', 'realname', 'audit'])->where('id', '>', 1)
                     ->order('FIELD(audit, 0, 1, -1)')->page($data['per_page'], $data['page']);
             }
         } else {

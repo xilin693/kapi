@@ -23,6 +23,7 @@ class Account
     public function add()
     {
         $data = P();
+        $data['role_ids'] = 1;
         AccountValidate::check($data, 'reg');
         $rs = AccountService::save($data);
         Response::sendResponseJson(200, $rs);
