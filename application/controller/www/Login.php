@@ -14,7 +14,7 @@ class Login
         $data['code'] = H(C('permission.captcha_header'));
         LoginValidate::check($data);
         $rs = permissionLib::getClass()->loadByUser($data['username'], $data['password']);
-        Response::sendResponseJson(200, $rs);
+        Response::sendSuccessJson($rs);
     }
 
     public function logout()
@@ -22,7 +22,7 @@ class Login
         $token = H(C('permission.token_header'));
         permissionLib::getClass()->tokenValid($token);
         permissionLib::getClass()->logout($token);
-        Response::sendResponseJson(200, '已登出');
+        Response::sendSuccessJson('已登出');
 
     }
 

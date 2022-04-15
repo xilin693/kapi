@@ -22,7 +22,7 @@ class Api
         PageValidate::check($data);
         ApiValidate::check($data, 'get');
         $rs = ApiService::getList($data);
-        Response::sendResponseJson(200, $rs);
+        Response::sendSuccessJson($rs);
     }
 
     public function add()
@@ -31,7 +31,7 @@ class Api
         $data['account_id'] = LoginHelper::getAccountId();
         ApiValidate::check($data, 'save');
         $rs = ApiService::save($data);
-        Response::sendResponseJson(200, $rs);
+        Response::sendSuccessJson($rs);
     }
 
     public function copy()
@@ -40,7 +40,7 @@ class Api
         $data['account_id'] = LoginHelper::getAccountId();
         ApiValidate::check($data, 'save');
         $rs = ApiService::copy($data);
-        Response::sendResponseJson(200, $rs);
+        Response::sendSuccessJson($rs);
     }
 
     public function json()
@@ -54,7 +54,7 @@ class Api
             if ($this->count > 1000) {
                 Response::sendResponseJson(400, '超过最大嵌套数');
             } else {
-                Response::sendResponseJson(200, array_values($this->items));
+                Response::sendSuccessJson(array_values($this->items));
             }
         }
     }
@@ -115,7 +115,7 @@ class Api
         $data = P();
         ApiValidate::check($data, 'save');
         $rs = ApiService::save($data, ['project_id', 'name']);
-        Response::sendResponseJson(200, $rs);
+        Response::sendSuccessJson($rs);
     }
 
     public function category($project_id)
@@ -124,14 +124,14 @@ class Api
         $data['pid'] = 0;
         ApiValidate::check($data, 'get');
         $rs = ApiService::getCategory($data);
-        Response::sendResponseJson(200, $rs);
+        Response::sendSuccessJson($rs);
     }
 
     public function sort()
     {
         $data = steam();
         $rs = ApiService::saveSort($data);
-        Response::sendResponseJson(200, $rs);
+        Response::sendSuccessJson($rs);
     }
 
     public function edit($id)
@@ -140,7 +140,7 @@ class Api
         ApiValidate::check($data, 'update');
         $data = ElementHelper::removeEmptyKey($data, ['header_data', 'form_data', 'query_data', 'put_doc', 'return_data']);
         $rs = ApiService::update($id, $data);
-        Response::sendResponseJson(200, $rs);
+        Response::sendSuccessJson($rs);
     }
 
     public function account($project_id)
@@ -148,26 +148,26 @@ class Api
         $data['project_id'] = $project_id;
         ApiValidate::check($data, 'get');
         $rs = ApiService::getAccountList($data);
-        Response::sendResponseJson(200, $rs);
+        Response::sendSuccessJson($rs);
     }
 
     public function relative($id)
     {
         $rs = ApiService::getRelativeList(intval($id));
-        Response::sendResponseJson(200, $rs);
+        Response::sendSuccessJson($rs);
     }
 
     public function copyRelative()
     {
         $data = P();
         $rs = ApiService::copyRelative($data);
-        Response::sendResponseJson(200, $rs);
+        Response::sendSuccessJson($rs);
     }
 
     public function project($id)
     {
         $rs = ApiService::getApiList($id);
-        Response::sendResponseJson(200, $rs);
+        Response::sendSuccessJson($rs);
     }
 
     public function setField($id)
@@ -175,7 +175,7 @@ class Api
         $data = steam($id);
         ApiValidate::check($data, 'update');
         $rs = ApiService::updateField($data, ['complete', 'name', 'pid']);
-        Response::sendResponseJson(200, $rs);
+        Response::sendSuccessJson($rs);
     }
 
     public function search()
@@ -184,21 +184,21 @@ class Api
         PageValidate::check($data);
         ApiValidate::check($data, 'get');
         $rs = ApiService::getList($data);
-        Response::sendResponseJson(200, $rs);
+        Response::sendSuccessJson($rs);
     }
 
     public function delete($id)
     {
         ApiValidate::check($id, 'delete');
         ApiService::delete($id);
-        Response::sendResponseJson(200);
+        Response::sendSuccessJson();
     }
     
     public function detail($id)
     {
         ApiValidate::check($id, 'detail');
         $rs = ApiService::getInfo($id);
-        Response::sendResponseJson(200, $rs);   
+        Response::sendSuccessJson($rs);
     }
 
     public function run()

@@ -23,7 +23,7 @@ class Kpi
             $data = G();
             PageValidate::check($data);
             $rs = KpiService::getList($data);
-            Response::sendResponseJson(200, $rs);
+            Response::sendSuccessJson($rs);
         } else {
             Response::sendResponseJson(400, '权限不足');
         }
@@ -35,7 +35,7 @@ class Kpi
         $data['account_id'] = $this->account_id;
         PageValidate::check($data);
         $rs = KpiService::getList($data);
-        Response::sendResponseJson(200, $rs);
+        Response::sendSuccessJson($rs);
     }
 
     public function add()
@@ -44,7 +44,7 @@ class Kpi
         $data['current_account_id'] = $this->account_id;
         KpiValidate::check($data, 'save');
         $rs = KpiService::save($data);
-        Response::sendResponseJson(200, $rs);
+        Response::sendSuccessJson($rs);
     }
 
     public function all()
@@ -52,7 +52,7 @@ class Kpi
         if ($this->account_id == 1) {
             $data = P();
             $rs = KpiService::saveAll($data);
-            Response::sendResponseJson(200, $rs);
+            Response::sendSuccessJson($rs);
         } else {
             Response::sendResponseJson(400, '权限不足');
         }
@@ -61,7 +61,7 @@ class Kpi
     public function detail($id)
     {
         $rs = KpiService::getInfo($id);
-        Response::sendResponseJson(200, $rs);
+        Response::sendSuccessJson($rs);
     }
 
     public function edit()
@@ -69,7 +69,7 @@ class Kpi
         $data = steam();
         $data['re_account_id'] = $this->account_id;
         $rs = KpiService::update($data);
-        Response::sendResponseJson(200, $rs);
+        Response::sendSuccessJson($rs);
     }
 
     public function excel()
@@ -83,7 +83,7 @@ class Kpi
             foreach ($rs['rs'] as &$row) {
                 $row['ctime'] = date('Y-m');
             }
-            Response::sendResponseJson(200, $rs['rs']);
+            Response::sendSuccessJson($rs['rs']);
         } else {
             Response::sendResponseJson(400, '权限不足');
         }

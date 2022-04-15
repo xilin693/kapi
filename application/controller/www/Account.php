@@ -17,7 +17,7 @@ class Account
         PageValidate::check($data);
         AccountValidate::check($data, 'search');
         $rs = AccountService::getList($data);
-        Response::sendResponseJson(200, $rs);
+        Response::sendSuccessJson($rs);
     }
 
     public function add()
@@ -26,7 +26,7 @@ class Account
         $data['role_ids'] = 1;
         AccountValidate::check($data, 'reg');
         $rs = AccountService::save($data);
-        Response::sendResponseJson(200, $rs);
+        Response::sendSuccessJson($rs);
     }
 
     public function edit($id)
@@ -34,7 +34,7 @@ class Account
         $data = steam($id);
         AccountValidate::check($data, 'update');
         $rs = AccountService::update($id, $data);
-        Response::sendResponseJson(200, $rs);
+        Response::sendSuccessJson($rs);
     }
 
     public function audit($id)
@@ -42,7 +42,7 @@ class Account
         $data = steam($id);
         AccountValidate::check($data, 'audit');
         $rs = AccountService::update($id, $data, ['audit', 'role_ids']);
-        Response::sendResponseJson(200, $rs);
+        Response::sendSuccessJson($rs);
     }
 
     public function alterPassword()
@@ -51,7 +51,7 @@ class Account
         $data['id'] = LoginHelper::getAccountId();
         AccountValidate::check($data, 'password');
         $rs = AccountService::updatePassword($data);
-        Response::sendResponseJson(200, $rs);
+        Response::sendSuccessJson($rs);
     }
 
     public function resetPassword($id)
@@ -60,20 +60,20 @@ class Account
         $data['token'] = H('Authorization');
         AccountValidate::check($data, 'reset');
         $rs = AccountService::resetPassword($id, $data['password'], $data['token']);
-        Response::sendResponseJson(200, $rs);
+        Response::sendSuccessJson($rs);
     }
 
     public function delete($id)
     {
         AccountValidate::check($id, 'delete');
         AccountService::delete($id);
-        Response::sendResponseJson(200);
+        Response::sendSuccessJson();
     }
 
     public function detail($id)
     {
         AccountValidate::check($id, 'detail');
         $rs = AccountService::getInfo($id);
-        Response::sendResponseJson(200, $rs);
+        Response::sendSuccessJson($rs);
     }
 }

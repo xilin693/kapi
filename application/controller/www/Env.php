@@ -16,7 +16,7 @@ class Env
         PageValidate::check($data);
         EnvValidate::check($data, 'get');
         $rs = EnvService::getList($data);
-        Response::sendResponseJson(200, $rs);
+        Response::sendSuccessJson($rs);
     }
 
     public function project($project_id)
@@ -25,7 +25,7 @@ class Env
         $data['project_id'] = $project_id;
         EnvValidate::check($data, 'get');
         $rs = EnvService::getList($data);
-        Response::sendResponseJson(200, $rs);
+        Response::sendSuccessJson($rs);
     }
     
     public function add()
@@ -33,7 +33,7 @@ class Env
         $data = P();
         EnvValidate::check($data, 'save');
         $rs = EnvService::save($data);
-        Response::sendResponseJson(200, $rs);
+        Response::sendSuccessJson($rs);
     }
 
     public function edit($id)
@@ -41,20 +41,20 @@ class Env
         $data = steam($id);
         EnvValidate::check($data, 'update');
         $rs = EnvService::update($id, $data);
-        Response::sendResponseJson(200, $rs);
+        Response::sendSuccessJson($rs);
     }
 
     public function delete($id)
     {
         EnvValidate::check($id, 'delete');
         EnvService::delete($id);
-        Response::sendResponseJson(200);
+        Response::sendSuccessJson();
     }
     
     public function detail($id)
     {
         EnvValidate::check($id, 'detail');
         $rs = EnvService::getInfo($id);
-        Response::sendResponseJson(200, $rs);   
+        Response::sendSuccessJson($rs);
     }
 }

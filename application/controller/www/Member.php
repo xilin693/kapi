@@ -25,7 +25,7 @@ class Member
         PageValidate::check($data);
         MemberValidate::check($data, 'get');
         $rs = MemberService::getList($data);
-        Response::sendResponseJson(200, $rs);
+        Response::sendSuccessJson($rs);
     }
     
     public function add()
@@ -33,7 +33,7 @@ class Member
         $data = P();
         MemberValidate::check($data, 'save');
         $rs = MemberService::save($data);
-        Response::sendResponseJson(200, $rs);
+        Response::sendSuccessJson($rs);
     }
 
     public function edit($id)
@@ -42,7 +42,7 @@ class Member
         $data['account_id'] = $this->account_id;
         MemberValidate::check($data, 'update');
         $rs = MemberService::update($id, $data);
-        Response::sendResponseJson(200, $rs);
+        Response::sendSuccessJson($rs);
     }
 
     public function delete()
@@ -50,7 +50,7 @@ class Member
         $data = G();
         $data['current_account_id'] = $this->account_id;
         MemberService::delete($data);
-        Response::sendResponseJson(200);
+        Response::sendSuccessJson();
     }
 
     public function project()
@@ -58,6 +58,6 @@ class Member
         $data = G();
         MemberValidate::check($data, 'project');
         $rs = MemberService::getInfo($data);
-        Response::sendResponseJson(200, $rs);
+        Response::sendSuccessJson($rs);
     }
 }

@@ -23,14 +23,14 @@ class Project
         $data = G();
         $data['account_id'] = $this->account_id;
         $rs = ProjectService::getList($data);
-        Response::sendResponseJson(200, $rs);
+        Response::sendSuccessJson($rs);
     }
 
     public function group($type = '')
     {
         $data['account_id'] = $this->account_id;
         $rs = ProjectService::getGroup($data, $type);
-        Response::sendResponseJson(200, $rs);
+        Response::sendSuccessJson($rs);
     }
 
     public function invite($pid = null)
@@ -41,7 +41,7 @@ class Project
 
         $data['account_id'] = $this->account_id;
         $rs = ProjectService::getInvite($data);
-        Response::sendResponseJson(200, $rs);
+        Response::sendSuccessJson($rs);
     }
 
     public function export()
@@ -57,7 +57,7 @@ class Project
     {
         $org = ['id' => 1, 'name' => '研发中心', 'title' => '', 'status' => 'x'];
         $org['children'] = ProjectService::getOrganize($this->account_id);
-        Response::sendResponseJson(200, $org);
+        Response::sendSuccessJson($org);
     }
 
     public function importJson()
@@ -83,7 +83,7 @@ class Project
                 break;
         }
 
-        Response::sendResponseJson(200, $rs);
+        Response::sendSuccessJson($rs);
     }
 
     public function add()
@@ -93,7 +93,7 @@ class Project
         $data['account_id'] = $this->account_id;
         ProjectValidate::check($data, 'save');
         $rs = ProjectService::save($data);
-        Response::sendResponseJson(200, $rs);
+        Response::sendSuccessJson($rs);
     }
 
     public function edit($id)
@@ -102,7 +102,7 @@ class Project
         $data['account_id'] = $this->account_id;
         ProjectValidate::check($data, 'update');
         $rs = ProjectService::update($id, $data);
-        Response::sendResponseJson(200, $rs);
+        Response::sendSuccessJson($rs);
     }
 
     public function progress($id)
@@ -111,7 +111,7 @@ class Project
         // $data['leader_id'] = $this->account_id;
         ProjectValidate::check($data, 'update');
         $rs = ProjectService::updateProgress($data);
-        Response::sendResponseJson(200, $rs);
+        Response::sendSuccessJson($rs);
     }
 
     public function delete($id)
@@ -123,7 +123,7 @@ class Project
         $data['id'] = $id;
         ProjectValidate::check($data, 'delete');
         ProjectService::delete($id);
-        Response::sendResponseJson(200);
+        Response::sendSuccessJson();
     }
 
     public function detail($id)
@@ -131,6 +131,6 @@ class Project
         $data['id'] = $id;
         ProjectValidate::check($data, 'detail');
         $rs = ProjectService::getInfo($id);
-        Response::sendResponseJson(200, $rs);
+        Response::sendSuccessJson($rs);
     } 
 }

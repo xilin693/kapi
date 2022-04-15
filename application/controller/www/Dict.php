@@ -12,7 +12,7 @@ class Dict
     {
         DictValidate::check($id, 'get');
         $rs = DictService::getList($id);
-        Response::sendResponseJson(200, $rs);
+        Response::sendSuccessJson($rs);
     }
 
     public function add()
@@ -20,7 +20,7 @@ class Dict
         $data = P();
         DictValidate::check($data, 'save');
         $rs = DictService::save($data);
-        Response::sendResponseJson(200, $rs);
+        Response::sendSuccessJson($rs);
     }
 
     public function edit($id)
@@ -28,20 +28,20 @@ class Dict
         $data = steam($id);
         DictValidate::check($data, 'update');
         DictService::update($data);
-        Response::sendResponseJson(200);
+        Response::sendSuccessJson();
     }
 
     public function delete($id)
     {
         DictValidate::check($id, 'delete');
         DictService::delete($id);
-        Response::sendResponseJson(200);
+        Response::sendSuccessJson();
     }
 
     public function getTag($id)
     {
         DictValidate::check($id, 'get');
         $rs = DictService::getTagList($id);
-        Response::sendResponseJson(200, $rs);
+        Response::sendSuccessJson($rs);
     }
 }

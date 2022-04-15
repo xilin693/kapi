@@ -14,7 +14,7 @@ class Item
         $data['dict_id'] = $id;
         ItemValidate::check($data, 'save');
         $rs = ItemService::save($data);
-        Response::sendResponseJson(200, $rs);
+        Response::sendSuccessJson($rs);
     }
 
     public function edit($id)
@@ -22,13 +22,13 @@ class Item
         $data = steam($id);
         ItemValidate::check($data, 'update');
         ItemService::update($data);
-        Response::sendResponseJson(200);
+        Response::sendSuccessJson();
     }
 
     public function delete($id)
     {
         ItemValidate::check($id, 'delete');
         ItemService::delete($id);
-        Response::sendResponseJson(200);
+        Response::sendSuccessJson();
     }
 }

@@ -17,7 +17,7 @@ class General
     public function index()
     {
         $data['site'] = 'kapi';
-        Response::sendResponseJson(200, $data);
+        Response::sendSuccessJson($data);
     }
 
     public function rest()
@@ -82,7 +82,7 @@ class General
             $array['status_url'] = '/' . $data['rest'] . '/:id/status';
             $array['status_put_data'] = json_encode(['status' => '']);
             $array['php_rule'] = $php_rule;
-            Response::sendResponseJson(200, $array);
+            Response::sendSuccessJson($array);
         } catch (\Throwable $e) {
             Response::sendResponseJson(400, '数据获取失败:' . $e->getMessage() );
         }
@@ -169,13 +169,13 @@ class General
         $user_id = LoginCache::getId(H('Authorization'));
         AccountValidate::check($user_id, 'detail');
         $rs = AccountService::getInfo($user_id);
-        Response::sendResponseJson(200, $rs);
+        Response::sendSuccessJson($rs);
     }
 
     public function roles()
     {
         $rs = RoleService::getList();
-        Response::sendResponseJson(200, $rs);
+        Response::sendSuccessJson($rs);
     }
 
     public function file()
@@ -185,7 +185,7 @@ class General
         if (!$name) {
             Response::sendResponseJson(400, '上传失败,' . $upload->getError());
         } else {
-            Response::sendResponseJson(200, ['filename' => $name]);
+            Response::sendSuccessJson(['filename' => $name]);
         }
     }
 

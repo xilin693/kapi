@@ -11,7 +11,7 @@ class Menu
     public function get()
     {
         $rs = MenuService::getList();
-        Response::sendResponseJson(200, $rs);
+        Response::sendSuccessJson($rs);
     }
 
     public function add()
@@ -20,7 +20,7 @@ class Menu
         MenuValidate::check($data, 'save');
         $data['segment'] = $data['url'] ? explode('/', $data['url'])[0] : '';
         $rs = MenuService::save($data);
-        Response::sendResponseJson(200, $rs);
+        Response::sendSuccessJson($rs);
     }
 
     public function edit($id)
@@ -29,20 +29,20 @@ class Menu
         $data['segment'] = $data['url'] ? explode('/', $data['url'])[0] : '';
         MenuValidate::check($data);
         $rs = MenuService::update($id, $data);
-        Response::sendResponseJson(200, $rs);
+        Response::sendSuccessJson($rs);
     }
 
     public function delete($id)
     {
         MenuValidate::check($id, 'delete');
         MenuService::delete($id);
-        Response::sendResponseJson(200);
+        Response::sendSuccessJson();
     }
 
     public function detail($id)
     {
         MenuValidate::check($id, 'detail');
         $rs = MenuService::getInfo($id);
-        Response::sendResponseJson(200, $rs);
+        Response::sendSuccessJson($rs);
     }
 }

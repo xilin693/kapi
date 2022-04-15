@@ -10,6 +10,6 @@ class Captcha
     public function index()
     {
         $rs = CaptchaService::get();
-        Response::sendResponseJson(200, $rs);
+        Response::sendSuccessJson($rs);
     }
 }
